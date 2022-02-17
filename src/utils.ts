@@ -1,5 +1,5 @@
 import { promises as fsPromises } from 'fs';
-import { HTMLType, StyleAndScriptType } from './types';
+import { HTMLType, StyleAndScriptType, TranslationsType } from './types';
 
 const { readFile } = fsPromises;
 
@@ -25,10 +25,10 @@ export const getPageHTML = async (type: HTMLType, content: string): Promise<stri
     }
 };
 
-export const getPageTranslations = async (type, content) => {
+export const getPageTranslations = async (type: TranslationsType, content: { [key: string]: string; } | string) => {
     switch (type) {
         case 'FILE':
-            return JSON.parse((await readFile(content)).toString());
+            return JSON.parse((await readFile(content as string)).toString());
         case 'CONTENT':
         default:
             return Promise.resolve(content);

@@ -4,9 +4,6 @@
   "description": "Convert html to pdf using puppeteer",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --fix"
@@ -26,6 +23,7 @@
     "puppeteer": "^13.3.2"
   },
   "devDependencies": {
+    "@types/mustache": "^4.1.2",
     "typescript": "^4.5.5"
   }
 }

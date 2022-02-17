@@ -4,7 +4,7 @@ import puppeteer, { PDFOptions } from 'puppeteer';
 import { getPageHTML, getPageStylesAndScript, getPageTranslations } from "./utils";
 
 const getHTML = async (options: PDFFromHTMLOptions) => {
-    let html = await getPageHTML(options.template.type || HTMLType.CONTENT, options.template.content);
+    let html = await getPageHTML(options.template?.type || HTMLType.CONTENT, options.template?.content as string);
     if (options.data) {
         if (options.translations) {
             try {
@@ -46,8 +46,8 @@ export const htmlToPdf = async (options: PDFFromHTMLOptions) => {
             await page.addScriptTag(pageScript);
         }
     } else {
-        await page.goto(options.url?.link, { waitUntil: 'networkidle0' });
-        if (options.url.auth) {
+        await page.goto(options.url?.link as string, { waitUntil: 'networkidle0' });
+        if (options.url?.auth) {
             await page.authenticate({
                 username: options.url.auth.username,
                 password: options.url.auth.password,
@@ -59,9 +59,9 @@ export const htmlToPdf = async (options: PDFFromHTMLOptions) => {
         scale: options.pdf.scale || 1,
         landscape: options.pdf.landscape || false,
         margin: options.pdf.margin ? options.pdf.margin : undefined,
-        displayHeaderFooter: !!options.template.header || !!options.template.footer,
-        headerTemplate: options.template.header,
-        footerTemplate: options.template.footer,
+        displayHeaderFooter: !!options.template?.header || !!options.template?.footer,
+        headerTemplate: options.template?.header,
+        footerTemplate: options.template?.footer,
     } as PDFOptions;
 
     if (options.pdf.writeStream) {
