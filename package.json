@@ -1,0 +1,31 @@
+{
+  "name": "to-pdf",
+  "version": "1.0.0",
+  "description": "Convert html to pdf using puppeteer",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sankalpkataria/to-pdf.git"
+  },
+  "author": "Sankalp Kataria",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sankalpkataria/to-pdf/issues"
+  },
+  "homepage": "https://github.com/sankalpkataria/to-pdf#readme",
+  "dependencies": {
+    "mustache": "^4.2.0",
+    "puppeteer": "^13.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}
