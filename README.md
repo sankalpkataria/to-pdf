@@ -1,4 +1,4 @@
-# to-pdf
+# convert-to-pdf
 
 Convert html to pdf using puppeteer
 
@@ -61,6 +61,8 @@ const options = {
 ## Examples
 
 ```javascript
+import { htmlToPdf } from 'convert-to-pdf';
+
 const options = {
   // template options
   template: {
@@ -81,6 +83,8 @@ const pdf = await htmlToPdf(options);
 ```
 
 ```javascript
+import { htmlToPdf } from 'convert-to-pdf';
+
 const options = {
   pdf: {
     writeStream: res // http response as writable stream

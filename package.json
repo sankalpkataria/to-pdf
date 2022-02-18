@@ -1,5 +1,5 @@
 {
-  "name": "to-pdf",
+  "name": "convert-to-pdf",
   "version": "1.0.0",
   "description": "Convert html to pdf using puppeteer",
   "main": "dist/index.js",
