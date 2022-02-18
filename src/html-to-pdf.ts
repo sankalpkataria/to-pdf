@@ -1,9 +1,9 @@
-import { HTMLType, PDFFromHTMLOptions } from "./types";
+import { HTMLType, HtmlToPdfOptions } from "./types";
 import Mustache from 'mustache';
 import puppeteer, { PDFOptions } from 'puppeteer';
 import { getPageHTML, getPageStylesAndScript, getPageTranslations } from "./utils";
 
-const getHTML = async (options: PDFFromHTMLOptions) => {
+const getHTML = async (options: HtmlToPdfOptions) => {
     let html = await getPageHTML(options.template?.type || HTMLType.CONTENT, options.template?.content as string);
     if (options.data) {
         if (options.translations) {
@@ -19,7 +19,7 @@ const getHTML = async (options: PDFFromHTMLOptions) => {
     return html;
 };
 
-export const htmlToPdf = async (options: PDFFromHTMLOptions) => {
+export const htmlToPdf = async (options: HtmlToPdfOptions) => {
     if (!options.pdf) {
         options.pdf = {};
     }

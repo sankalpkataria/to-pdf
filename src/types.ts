@@ -66,7 +66,7 @@ type TransitionOptions = {
     translations: { [key: string]: string } | string;
 };
 
-export type PDFFromHTMLOptions = {
+export type HtmlToPdfOptions = {
     page?: PageSizeOptions;
     pdf?: PdfOptions;
     url?: UrlOptions;

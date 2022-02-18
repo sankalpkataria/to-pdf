@@ -12,6 +12,13 @@
     "type": "git",
     "url": "git+https://github.com/sankalpkataria/to-pdf.git"
   },
+  "keywords": [
+    "pdf",
+    "html to pdf",
+    "puppeteer",
+    "mustache",
+    "nodejs"
+  ],
   "author": "Sankalp Kataria",
   "license": "MIT",
   "bugs": {
