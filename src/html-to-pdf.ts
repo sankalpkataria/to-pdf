@@ -1,17 +1,20 @@
 import { HTMLType, HtmlToPdfOptions } from "./types";
 import Mustache from 'mustache';
 import puppeteer, { PDFOptions } from 'puppeteer';
-import { getPageHTML, getPageStylesAndScript, getPageTranslations } from "./utils";
+import { getPageHTML, getPageStylesAndScript, getAdditionalData } from "./utils";
 
 const getHTML = async (options: HtmlToPdfOptions) => {
     let html = await getPageHTML(options.template?.type || HTMLType.CONTENT, options.template?.content as string);
     if (options.data) {
-        if (options.translations) {
+        if (!(options.data instanceof Object) && typeof options.data !== 'object') {
+            throw new Error('Data must be a JSON object.')
+        }
+        if (options.additionalData) {
             try {
-                const translations = await getPageTranslations(options.translations.resourceType, options.translations.translations);
-                options.data = Object.assign(options.data, translations);
+                const additionalData = await getAdditionalData(options.additionalData.resourceType, options.additionalData.data);
+                options.data = Object.assign(options.data, additionalData);
             } catch (error) {
-                throw new Error('Invalid format for translations. Must be JSON');
+                throw new Error('Invalid format for additional data. Must be JSON');
             }
         }
         return Mustache.render(html, options.data);

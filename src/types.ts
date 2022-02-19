@@ -1,5 +1,4 @@
 import { PaperFormat } from "puppeteer";
-import { WriteStream } from "fs";
 
 export enum StyleAndScriptType {
     URL = 'URL',
@@ -12,7 +11,7 @@ export enum HTMLType {
     CONTENT = 'CONTENT',
 }
 
-export enum TranslationsType {
+export enum AdditionalDataType {
     FILE = 'FILE',
     CONTENT = 'CONTENT',
 }
@@ -61,9 +60,9 @@ type TemplateOptions = {
     footer?: string;
 };
 
-type TransitionOptions = {
-    resourceType: TranslationsType;
-    translations: { [key: string]: string } | string;
+type AdditionalDataOptions = {
+    resourceType: AdditionalDataType;
+    data: { [key: string]: string } | string;
 };
 
 export type HtmlToPdfOptions = {
@@ -72,5 +71,5 @@ export type HtmlToPdfOptions = {
     url?: UrlOptions;
     template?: TemplateOptions;
     data?: { [key: string]: any };
-    translations?: TransitionOptions;
+    additionalData?: AdditionalDataOptions;
 };

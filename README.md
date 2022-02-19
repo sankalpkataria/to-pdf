@@ -33,7 +33,7 @@ const options = {
         margin: Paper margin - object - (default: none) - keys: top, bottom, right, left,
     },
     // Template options(used while rendering by puppeteer)
-    template: { // REQUIRED
+    template: {
       type: Type of html template - string - values: FILE/CONTENT - (default: CONTENT)
       content: html template - string - (file path if type is FILE or HTML string if type is CONTENT)
       css: {
@@ -52,9 +52,21 @@ const options = {
         - `totalPages` total pages in the document
       footer: HTML template for the print footer. Should use the same format as the header.
     },
-    data: Data to render with HTML template - object
+    // Url options
+    url: {
+      link: URL to render - string
+      auth: Authentication for the given url(if required) - object - keys: username, password
+    }
+    data: Data to render on template - object,
+    // Additional data to render on template. For example, Can be used to provide translations on the template. Check the second example below
+    additionalData: {
+      resourceType: Type of resource data - string - values: FILE/CONTENT - (default: CONTENT),
+      data: Data to render - object | string - (file path if type is FILE or JSON object if type is CONTENT )
+    }
 }
 ```
+
+> At least one of template or url must be specified.
 
 > For more information about the options, see the documentation for puppeteer [here](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md)
 
@@ -66,7 +78,7 @@ import { htmlToPdf } from 'convert-to-pdf';
 const options = {
   // template options
   template: {
-    type: 'FILE', // If the template in in the form of a file
+    type: 'FILE', // If the template is in the form of a file
     content: path.resolve(__dirname, 'index.html'),
     css: {
       type: 'FILE',
@@ -79,7 +91,7 @@ const options = {
   },
 };
 const pdf = await htmlToPdf(options);
-// here pdf is in the for of Buffer
+// here pdf is in the form of Buffer
 ```
 
 ```javascript
@@ -102,7 +114,7 @@ const options = {
           <meta name='viewport' content='width=device-width, initial-scale=1'>
       </head>
       <body>
-          <h1>Hello {{name}}!</h1>
+          <h1>{{HELLO}} {{name}}!</h1>
       </body>
     </html>
 `,
@@ -119,7 +131,14 @@ const options = {
   data: {
     name: 'John Doe',
   },
+  // additional data, used here as translations key/value
+  additionalData: {
+    resourceType: 'CONTENT',
+    data: {
+      HELLO: 'Hej'
+    }
+  }
 };
 await htmlToPdf(options);
-// here pdf is in the for of Buffer
+// Here PDF will be piped to the specified writable stream
 ```
