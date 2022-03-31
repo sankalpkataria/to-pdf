@@ -63,8 +63,8 @@ export const htmlToPdf = async (options: HtmlToPdfOptions) => {
         landscape: options.pdf.landscape || false,
         margin: options.pdf.margin ? options.pdf.margin : undefined,
         displayHeaderFooter: !!options.template?.header || !!options.template?.footer,
-        headerTemplate: options.template?.header,
-        footerTemplate: options.template?.footer,
+        headerTemplate: options.template?.header ? Mustache.render(options.template?.header, options.data) : undefined,
+        footerTemplate: options.template?.footer ? Mustache.render(options.template?.footer, options.data) : undefined ,
     } as PDFOptions;
 
     if (options.pdf.writeStream) {
