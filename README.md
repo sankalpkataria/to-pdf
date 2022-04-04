@@ -44,7 +44,7 @@ const options = {
           type: Type of script content - string - values: FILE/CONTENT/URL - (default: CONTENT),
           content: javascript code - string - (file path if type is FILE or code string if type is CONTENT or URL )
       },
-      header: HTML template for the print header. Should be valid HTML markup with following classes used to inject printing values into them:
+      header: HTML template for the print header. Should be valid HTML markup. the following classes can be used to inject printing values:
         - `date` formatted print date
         - `title` document title
         - `url` document location
