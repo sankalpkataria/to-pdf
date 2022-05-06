@@ -1,6 +1,6 @@
 import { HTMLType, HtmlToPdfOptions } from "./types";
 import Mustache from 'mustache';
-import puppeteer, { PDFOptions } from 'puppeteer';
+import puppeteer, { Browser, PDFOptions } from 'puppeteer';
 import { getPageHTML, getPageStylesAndScript, getAdditionalData } from "./utils";
 
 const getHTML = async (options: HtmlToPdfOptions) => {
@@ -29,7 +29,12 @@ export const htmlToPdf = async (options: HtmlToPdfOptions) => {
     if (!options.template && !options.url) {
         throw new Error('At least one of template or url must be specified');
     }
-    const browser = await puppeteer.launch({ headless: true });
+    let browser: Browser;
+    if (options.puppeteerExecPath) {
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-extensions'], executablePath: options.puppeteerExecPath });
+    } else {
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-extensions'] });
+    }
     const page = await browser.newPage();
     if (options.page?.height) {
         await page.setViewport({

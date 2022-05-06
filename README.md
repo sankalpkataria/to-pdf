@@ -19,6 +19,8 @@ Options available
 
 ```javascript
 const options = {
+    // executable path for Puppeteer. Default path provided by puppeteer will be used if this option is not provided.
+    puppeteerExecPath: 'Puppeteer executable path',
     // page options(used for rendering the content via puppeteer) 
     page: { // OPTIONAL
         height: height of page - number - (default: 1600),
