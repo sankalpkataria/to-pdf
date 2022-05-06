@@ -66,6 +66,7 @@ type AdditionalDataOptions = {
 };
 
 export type HtmlToPdfOptions = {
+    puppeteerExecPath?: string;
     page?: PageSizeOptions;
     pdf?: PdfOptions;
     url?: UrlOptions;
