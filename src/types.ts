@@ -6,7 +6,7 @@ export enum StyleAndScriptType {
     CONTENT = 'CONTENT',
 }
 
-export enum HTMLType {
+export enum TemplateContentType {
     FILE = 'FILE',
     CONTENT = 'CONTENT',
 }
@@ -52,7 +52,7 @@ type StyleAndScriptTypeOptions = {
 };
 
 type TemplateOptions = {
-    type: HTMLType;
+    type: TemplateContentType;
     content: string;
     css?: StyleAndScriptTypeOptions;
     script?: StyleAndScriptTypeOptions;
@@ -65,12 +65,15 @@ type AdditionalDataOptions = {
     data: { [key: string]: string } | string;
 };
 
-export type HtmlToPdfOptions = {
+export type RenderOptions = {
+    template?: TemplateOptions;
+    data?: { [key: string]: any };
+    additionalData?: AdditionalDataOptions;
+};
+
+export type HtmlToPdfOptions = RenderOptions & {
     puppeteerExecPath?: string;
     page?: PageSizeOptions;
     pdf?: PdfOptions;
     url?: UrlOptions;
-    template?: TemplateOptions;
-    data?: { [key: string]: any };
-    additionalData?: AdditionalDataOptions;
 };
