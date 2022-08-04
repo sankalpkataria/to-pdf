@@ -21,7 +21,7 @@ Options available
 const options = {
     // executable path for Puppeteer. Default path provided by puppeteer will be used if this option is not provided.
     puppeteerExecPath: 'Puppeteer executable path',
-    // page options(used for rendering the content via puppeteer) 
+    // page options(used for rendering the content via puppeteer)
     page: { // OPTIONAL
         height: height of page - number - (default: 1600),
         width: width of page - number - (default: 745.60),
@@ -101,7 +101,7 @@ import { htmlToPdf } from 'convert-to-pdf';
 
 const options = {
   pdf: {
-    writeStream: res // http response as writable stream
+    writeStream: res, // http response as writable stream
   },
   // template options
   template: {
@@ -137,10 +137,34 @@ const options = {
   additionalData: {
     resourceType: 'CONTENT',
     data: {
-      HELLO: 'Hej'
-    }
-  }
+      HELLO: 'Hej',
+    },
+  },
 };
 await htmlToPdf(options);
 // Here PDF will be piped to the specified writable stream
+```
+
+- `getDataRenderedTemplate`
+
+  ```javascript
+      getDataRenderedTemplate(options: RenderOptions): Promise<string>
+  ```
+
+Options available
+
+```javascript
+const options = {
+    template: {
+      type: Type of template - string - values: FILE/CONTENT - (default: CONTENT)
+      content: template content - string - (file path if type is FILE or string if type is CONTENT)
+    },
+    data: Data to render on template - object,
+    // Additional data to render on template. For example, Can be used to provide translations on the template. Check the example above
+    additionalData: {
+      resourceType: Type of resource data - string - values: FILE/CONTENT - (default: CONTENT),
+      data: Data to render - object | string - (file path if type is FILE or JSON object if type is CONTENT )
+    }
+  }
+
 ```

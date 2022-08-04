@@ -1,5 +1,5 @@
 import { promises as fsPromises } from 'fs';
-import { HTMLType, StyleAndScriptType, AdditionalDataType } from './types';
+import { TemplateContentType, StyleAndScriptType, AdditionalDataType } from './types';
 
 const { readFile } = fsPromises;
 
@@ -15,7 +15,7 @@ export const getPageStylesAndScript = (type: StyleAndScriptType, content: string
     }
 };
 
-export const getPageHTML = async (type: HTMLType, content: string): Promise<string> => {
+export const getContent = async (type: TemplateContentType, content: string): Promise<string> => {
     switch (type) {
         case 'FILE':
             return (await readFile(content)).toString();

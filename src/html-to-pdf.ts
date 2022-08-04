@@ -1,10 +1,10 @@
-import { HTMLType, HtmlToPdfOptions } from "./types";
+import { RenderOptions, TemplateContentType, HtmlToPdfOptions } from "./types";
 import Mustache from 'mustache';
 import puppeteer, { Browser, PDFOptions } from 'puppeteer';
-import { getPageHTML, getPageStylesAndScript, getAdditionalData } from "./utils";
+import { getContent, getPageStylesAndScript, getAdditionalData } from "./utils";
 
-const getHTML = async (options: HtmlToPdfOptions) => {
-    let html = await getPageHTML(options.template?.type || HTMLType.CONTENT, options.template?.content as string);
+export const getDataRenderedTemplate = async (options: RenderOptions) => {
+    let templateContent = await getContent(options.template?.type || TemplateContentType.CONTENT, options.template?.content as string);
     if (options.data) {
         if (!(options.data instanceof Object) && typeof options.data !== 'object') {
             throw new Error('Data must be a JSON object.')
@@ -17,9 +17,9 @@ const getHTML = async (options: HtmlToPdfOptions) => {
                 throw new Error('Invalid format for additional data. Must be JSON');
             }
         }
-        return Mustache.render(html, options.data);
+        return Mustache.render(templateContent, options.data);
     }
-    return html;
+    return templateContent;
 };
 
 export const htmlToPdf = async (options: HtmlToPdfOptions) => {
@@ -43,7 +43,7 @@ export const htmlToPdf = async (options: HtmlToPdfOptions) => {
         });
     }
     if (options.template) {
-        const html = await getHTML(options);
+        const html = await getDataRenderedTemplate(options);
         await page.setContent(html, { waitUntil: 'networkidle0' });
         if (options.template.css?.content) {
             const pageStyles = getPageStylesAndScript(options.template.css.type, options.template.css.content);
