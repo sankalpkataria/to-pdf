@@ -35,7 +35,7 @@ const options = {
           height: PDF height in pixes - number or string with px as unit - Example: 300 or '300px',
         },
         scale: Scale of the webpage rendering - number - (default: 1) - value must be  between 0.1 and 2,
-        format: Paper format - string,
+        format: Paper format - PaperFormat,
         landscape: Paper orientation - boolean - (default: false),
         margin: Paper margin - object - (default: none) - keys: top, bottom, right, left,
         printBackground: Print Page background on PDF? - boolean - (default: false),
