@@ -1,6 +1,6 @@
 {
   "name": "convert-to-pdf",
-  "version": "2.3.1",
+  "version": "3.3.1",
   "description": "Convert html to pdf using puppeteer",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
@@ -13,12 +13,22 @@
     "url": "git+https://github.com/sankalpkataria/to-pdf.git"
   },
   "keywords": [
-    "pdf",
-    "convert to pdf",
-    "html to pdf",
-    "puppeteer",
-    "mustache",
-    "nodejs"
+    "Convert to PDF",
+    "PDF generation",
+    "HTML to PDF",
+    "Puppeteer",
+    "PDF converter",
+    "Mustache templates",
+    "PDF creation",
+    "Print to PDF",
+    "HTML conversion",
+    "PDF rendering",
+    "Templated PDF",
+    "Document generation",
+    "PDF rendering engine",
+    "HTML rendering",
+    "Dynamic PDF generation",
+    "Headless browser"
   ],
   "author": "Sankalp Kataria",
   "license": "MIT",

@@ -1,3 +1,3 @@
-import { getDataRenderedTemplate, htmlToPdf } from "./html-to-pdf";
+import { getDataRenderedTemplate, htmlToPdf } from './html-to-pdf';
 
 export { htmlToPdf, getDataRenderedTemplate };
