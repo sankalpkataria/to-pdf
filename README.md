@@ -29,10 +29,17 @@ const options = {
     // PDF options(used while creating the PDF)
     pdf: { // OPTIONAL
         writeStream: for stream of PDF - NodeJS.WritableStream - (default: none(i.e. return PDF as Buffer)),
+        path: The path to save the file to - string - If the path is relative, it's resolved relative to the current working directory - (default: '' which means the PDF will not be written to disk),
+        dimensions: { will be ignored if format option is provided
+          width: PDF width in pixes - number or string with px as unit - Example: 300 or '300px',
+          height: PDF height in pixes - number or string with px as unit - Example: 300 or '300px',
+        },
         scale: Scale of the webpage rendering - number - (default: 1) - value must be  between 0.1 and 2,
-        format: Paper format - string - (default: 'A4'),
+        format: Paper format - string,
         landscape: Paper orientation - boolean - (default: false),
         margin: Paper margin - object - (default: none) - keys: top, bottom, right, left,
+        printBackground: Print Page background on PDF? - boolean - (default: false),
+        transparentBackground: Transparent background on PDF? - boolean - (default: false),
     },
     // Template options(used while rendering by puppeteer)
     template: {
@@ -53,6 +60,9 @@ const options = {
         - `pageNumber` current page number
         - `totalPages` total pages in the document
       footer: HTML template for the print footer. Should use the same format as the header.
+      partials: MustacheJs partials (sub-templates) - Object<string, string> - Example - {
+        [templateName]: [template content]
+      }
     },
     // Url options
     url: {
