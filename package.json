@@ -38,7 +38,7 @@
   "homepage": "https://github.com/sankalpkataria/to-pdf#readme",
   "dependencies": {
     "mustache": "^4.2.0",
-    "puppeteer": "^13.3.2"
+    "puppeteer": "^21.4.1"
   },
   "devDependencies": {
     "@types/mustache": "^4.1.2",
