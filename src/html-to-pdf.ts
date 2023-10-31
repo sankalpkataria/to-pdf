@@ -42,13 +42,13 @@ export const htmlToPdf = async (options: HtmlToPdfOptions) => {
   let browser: Browser;
   if (options.puppeteerExecPath) {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       args: ['--no-sandbox', '--disable-extensions'],
       executablePath: options.puppeteerExecPath,
     });
   } else {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       args: ['--no-sandbox', '--disable-extensions'],
     });
   }
